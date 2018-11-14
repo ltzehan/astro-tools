@@ -10,14 +10,16 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     12404,        282]
-NotebookOptionsPosition[     12101,        269]
-NotebookOutlinePosition[     12449,        284]
-CellTagsIndexPosition[     12406,        281]
+NotebookDataLength[     23023,        529]
+NotebookOptionsPosition[     22589,        513]
+NotebookOutlinePosition[     22937,        528]
+CellTagsIndexPosition[     22894,        525]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+
+Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
   RowBox[{
@@ -32,6 +34,115 @@ Cell[BoxData[{
    RowBox[{"\[Omega]", "=", 
     FractionBox[
      RowBox[{"2", " ", "Pi"}], "365"]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"meanPos", "[", "t_", "]"}], ":=", 
+  RowBox[{"{", 
+   RowBox[{
+    RowBox[{"R", " ", 
+     RowBox[{"Sin", "[", 
+      RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", 
+    RowBox[{
+     RowBox[{"-", "R"}], "  ", 
+     RowBox[{"Cos", "[", 
+      RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", "0"}], 
+   "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"actualPos", "[", 
+    RowBox[{"t_", ",", "\[Epsilon]_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"RotationTransform", "[", 
+     RowBox[{
+      RowBox[{"-", "\[Epsilon]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1", ",", "0"}], "}"}]}], "]"}], "[", 
+    RowBox[{"meanPos", "[", "t", "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"projAngle", "[", 
+   RowBox[{"t_", ",", "\[Epsilon]_"}], "]"}], ":=", 
+  TagBox[GridBox[{
+     {"\[Piecewise]", GridBox[{
+        {
+         RowBox[{"ArcTan", "[", 
+          RowBox[{
+           RowBox[{"Tan", "[", 
+            RowBox[{"\[Omega]", " ", "t"}], "]"}], 
+           RowBox[{"Cos", "[", "\[Epsilon]", "]"}]}], "]"}], 
+         RowBox[{"0", "\[LessEqual]", "t", "<", 
+          RowBox[{"365", "*", "0.25"}]}]},
+        {
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            RowBox[{"Tan", "[", 
+             RowBox[{"\[Omega]", " ", "t"}], "]"}], 
+            RowBox[{"Cos", "[", "\[Epsilon]", "]"}]}], "]"}], "+", "Pi"}], 
+         RowBox[{
+          RowBox[{"365", "*", "0.25"}], "\[LessEqual]", "t", "<", 
+          RowBox[{"365", "*", "0.75"}]}]},
+        {
+         RowBox[{
+          RowBox[{"ArcTan", "[", 
+           RowBox[{
+            RowBox[{"Tan", "[", 
+             RowBox[{"\[Omega]", " ", "t"}], "]"}], 
+            RowBox[{"Cos", "[", "\[Epsilon]", "]"}]}], "]"}], "+", 
+          RowBox[{"2", "Pi"}]}], 
+         RowBox[{
+          RowBox[{"365", "*", "0.75"}], "\[LessEqual]", "t", "<", "365"}]}
+       },
+       AllowedDimensions->{2, Automatic},
+       Editable->True,
+       GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+          "RowsIndexed" -> {}},
+       GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+         "RowsIndexed" -> {}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.84]}, 
+           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.4]}, 
+           Offset[0.2]}, "RowsIndexed" -> {}},
+       Selectable->True]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxItemSize->{
+     "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.35]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   "Piecewise",
+   DeleteWithContents->True,
+   Editable->False,
+   SelectWithContents->True,
+   Selectable->False]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"projPos", "[", 
+    RowBox[{"t_", ",", "\[Epsilon]_"}], "]"}], ":=", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"R", " ", 
+       RowBox[{"Sin", "[", "\[Theta]", "]"}]}], ",", 
+      RowBox[{
+       RowBox[{"-", "R"}], "  ", 
+       RowBox[{"Cos", "[", "\[Theta]", "]"}]}], ",", "0"}], "}"}], "/.", 
+    RowBox[{"\[Theta]", "\[Rule]", " ", 
+     RowBox[{"projAngle", "[", 
+      RowBox[{"t", ",", "\[Epsilon]"}], "]"}]}]}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -68,16 +179,8 @@ Cell[BoxData[{
         RowBox[{"Opacity", "[", "1", "]"}], ",", 
         RowBox[{"Sphere", "[", 
          RowBox[{
-          RowBox[{"{", 
-           RowBox[{
-            RowBox[{"R", " ", 
-             RowBox[{"Sin", "[", 
-              RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", 
-            RowBox[{
-             RowBox[{"-", "R"}], "  ", 
-             RowBox[{"Cos", "[", 
-              RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", "0"}], "}"}], ",",
-           "r"}], "]"}], ",", "\[IndentingNewLine]", 
+          RowBox[{"meanPos", "[", "t", "]"}], ",", "r"}], "]"}], ",", 
+        "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{"actual", " ", "sun"}], " ", "*)"}], "\[IndentingNewLine]", 
         RowBox[{"EdgeForm", "[", 
@@ -100,23 +203,10 @@ Cell[BoxData[{
            RowBox[{"0", ",", "1", ",", "0"}], "}"}]}], "]"}], ",", 
         "\[IndentingNewLine]", "Red", ",", 
         RowBox[{"Opacity", "[", "1", "]"}], ",", 
-        RowBox[{"Rotate", "[", 
+        RowBox[{"Sphere", "[", 
          RowBox[{
-          RowBox[{"Sphere", "[", 
-           RowBox[{
-            RowBox[{"{", 
-             RowBox[{
-              RowBox[{"R", " ", 
-               RowBox[{"Sin", "[", 
-                RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", 
-              RowBox[{
-               RowBox[{"-", "R"}], "  ", 
-               RowBox[{"Cos", "[", 
-                RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", "0"}], "}"}], 
-            ",", "r"}], "]"}], ",", 
-          RowBox[{"-", "\[Epsilon]"}], ",", 
-          RowBox[{"{", 
-           RowBox[{"0", ",", "1", ",", "0"}], "}"}]}], "]"}]}], 
+          RowBox[{"actualPos", "[", 
+           RowBox[{"t", ",", "\[Epsilon]"}], "]"}], ",", "r"}], "]"}]}], 
        "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
       RowBox[{"Boxed", "\[Rule]", "False"}], ",", 
       RowBox[{"PlotRange", "\[Rule]", 
@@ -133,77 +223,114 @@ Cell[BoxData[{
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{
-    RowBox[{
-     RowBox[{"If", "[", 
-      RowBox[{"isDeployed", ",", 
-       RowBox[{"Deploy", "@", "#"}], ",", "#"}], "]"}], "&"}], "@", 
-    "\[IndentingNewLine]", 
-    RowBox[{"Row", "[", 
-     RowBox[{"{", "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"celestialSphere", "[", 
-        RowBox[{"t", ",", "\[Epsilon]", ",", 
-         RowBox[{"{", 
-          RowBox[{"0", ",", 
-           RowBox[{"-", "5"}], ",", "1"}], "}"}]}], "]"}], ",", 
-       "\[IndentingNewLine]", 
-       RowBox[{"celestialSphere", "[", 
-        RowBox[{"t", ",", "\[Epsilon]", ",", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"R", " ", 
-            RowBox[{"Sin", "[", 
-             RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", 
-           RowBox[{
-            RowBox[{"-", "R"}], "  ", 
-            RowBox[{"Cos", "[", 
-             RowBox[{"\[Omega]", " ", "t"}], "]"}]}], ",", "0"}], "}"}]}], 
-        "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], ",", 
-   "\[IndentingNewLine]", 
-   RowBox[{"Grid", "[", 
+   RowBox[{"Row", "[", 
     RowBox[{"{", "\[IndentingNewLine]", 
      RowBox[{
-      RowBox[{"{", 
+      RowBox[{
        RowBox[{
-        RowBox[{"Control", "[", 
-         RowBox[{"{", 
-          RowBox[{
-           RowBox[{"{", 
-            RowBox[{"\[Epsilon]", ",", 
-             RowBox[{"23.5", "Degree"}]}], "}"}], ",", 
-           RowBox[{"0", "Degree"}], ",", 
-           RowBox[{"90", "Degree"}], ",", 
-           RowBox[{"0.1", "Degree"}]}], "}"}], "]"}], ",", 
-        RowBox[{"Spacer", "[", "50", "]"}], ",", 
-        RowBox[{"Framed", "[", 
+        RowBox[{"If", "[", 
+         RowBox[{"isDeployed", ",", 
+          RowBox[{"Deploy", "@", "#"}], ",", "#"}], "]"}], "&"}], "@", 
+       RowBox[{"Show", "[", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
          RowBox[{
-          RowBox[{"Control", "[", 
+         "stationary", " ", "view", " ", "at", " ", "First", " ", "Point", 
+          " ", "in", " ", "Aries"}], " ", "*)"}], "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"celestialSphere", "[", 
+          RowBox[{"t", ",", "\[Epsilon]", ",", 
            RowBox[{"{", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{"isDeployed", ",", "True", ",", "\"\<Locked\>\""}], 
+            RowBox[{"0", ",", 
+             RowBox[{"-", "5"}], ",", "1"}], "}"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+          "projection", " ", "of", " ", "actual", " ", "sun", " ", "onto", 
+           " ", "CE"}], " ", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"Yellow", ",", 
+            RowBox[{"Opacity", "[", 
+             RowBox[{"If", "[", 
+              RowBox[{"showProj", ",", "1", ",", "0"}], "]"}], "]"}], ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"projPos", "[", 
+               RowBox[{"t", ",", "\[Epsilon]"}], "]"}], ",", "r"}], "]"}]}], 
+           "}"}], "]"}]}], "\[IndentingNewLine]", "]"}]}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"Deploy", "@", 
+       RowBox[{"Show", "[", "\[IndentingNewLine]", 
+        RowBox[{"(*", " ", 
+         RowBox[{
+         "moving", " ", "view", " ", "with", " ", "mean", " ", "sun"}], " ", 
+         "*)"}], "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"celestialSphere", "[", 
+          RowBox[{"t", ",", "\[Epsilon]", ",", 
+           RowBox[{"meanPos", "[", "t", "]"}]}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{"(*", " ", 
+          RowBox[{
+          "projection", " ", "of", " ", "actual", " ", "sun", " ", "onto", 
+           " ", "CE"}], " ", "*)"}], "\[IndentingNewLine]", 
+         RowBox[{"Graphics3D", "[", 
+          RowBox[{"{", 
+           RowBox[{"Yellow", ",", 
+            RowBox[{"Opacity", "[", 
+             RowBox[{"If", "[", 
+              RowBox[{"showProj", ",", "1", ",", "0"}], "]"}], "]"}], ",", 
+            RowBox[{"Sphere", "[", 
+             RowBox[{
+              RowBox[{"projPos", "[", 
+               RowBox[{"t", ",", "\[Epsilon]"}], "]"}], ",", "r"}], "]"}]}], 
+           "}"}], "]"}]}], "\[IndentingNewLine]", "]"}]}]}], 
+     "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"Spacer", "[", "10", "]"}], ",", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"\[Epsilon]", ",", 
+              RowBox[{"23.5", "Degree"}]}], "}"}], ",", 
+            RowBox[{"0", "Degree"}], ",", 
+            RowBox[{"90", "Degree"}], ",", 
+            RowBox[{"0.1", "Degree"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Spacer", "[", "50", "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"isDeployed", ",", "True", ",", "\"\<Locked\>\""}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
+         RowBox[{"Spacer", "[", "25", "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+             "showProj", ",", "False", ",", "\"\<Show Projection on CE\>\""}],
               "}"}], ",", 
-             RowBox[{"{", 
-              RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
-          RowBox[{"FrameStyle", "\[Rule]", 
-           RowBox[{"Directive", "[", 
-            RowBox[{"Gray", ",", "Thin"}], "]"}]}], ",", 
-          RowBox[{"FrameMargins", "\[Rule]", 
-           RowBox[{"{", 
-            RowBox[{
-             RowBox[{"{", 
-              RowBox[{"15", ",", "15"}], "}"}], ",", 
-             RowBox[{"{", 
-              RowBox[{"5", ",", "5"}], "}"}]}], "}"}]}]}], "]"}]}], "}"}], 
-      ",", "\[IndentingNewLine]", 
-      RowBox[{"{", 
-       RowBox[{"Control", "[", 
-        RowBox[{"{", 
-         RowBox[{"t", ",", "0", ",", "365", ",", "1", ",", 
-          RowBox[{"Appearance", "\[Rule]", "\"\<Open\>\""}]}], "}"}], "]"}], 
-       "}"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], "\[IndentingNewLine]", 
-  "]"}], "\[IndentingNewLine]"}], "Input",
+            RowBox[{"{", 
+             RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}]}], "}"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"SpanFromAbove", ",", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{"t", ",", "0", ",", "365", ",", "1", ",", 
+            RowBox[{"Appearance", "\[Rule]", "\"\<Open\>\""}]}], "}"}], 
+          "]"}]}], "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
+     RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}]}], 
+  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.7511104606544614`*^9, 3.751110479286337*^9}, {
    3.7511105735969033`*^9, 3.75111080055748*^9}, {3.7511110335662456`*^9, 
    3.7511110552882023`*^9}, {3.7511111923807287`*^9, 
@@ -263,9 +390,126 @@ Cell[BoxData[{
    3.751186024398881*^9}, {3.7511860549112635`*^9, 3.7511860662054186`*^9}, {
    3.7511861261433935`*^9, 3.751186245863901*^9}, {3.7511863605096703`*^9, 
    3.7511863656211605`*^9}, {3.7511865121748705`*^9, 
-   3.7511867081359076`*^9}, {3.751186899823473*^9, 
-   3.751186970262233*^9}},ExpressionUUID->"0c717f5e-14ad-4410-a543-\
-526931114009"]
+   3.7511867081359076`*^9}, {3.751186899823473*^9, 3.751186970262233*^9}, {
+   3.7511874660147643`*^9, 3.751187492161965*^9}, {3.751187539284692*^9, 
+   3.7511878202950897`*^9}, {3.751188032709509*^9, 3.751188038622023*^9}, {
+   3.7511881291659203`*^9, 3.7511881317560186`*^9}, {3.7511881736305366`*^9, 
+   3.751188230598321*^9}, {3.751188263781513*^9, 3.751188307221655*^9}, {
+   3.751188354653936*^9, 3.751188452678361*^9}, {3.751188487968221*^9, 
+   3.7511885290079803`*^9}, {3.751188571870194*^9, 3.751188574071079*^9}, {
+   3.751190416357399*^9, 3.7511904434058027`*^9}, {3.751190488943384*^9, 
+   3.751190489597636*^9}, 3.7511905372578964`*^9, {3.75119059646094*^9, 
+   3.7511906148057876`*^9}, {3.7511906786540785`*^9, 3.751190787734169*^9}, {
+   3.751190858103099*^9, 3.751190958376119*^9}, {3.7511909967713804`*^9, 
+   3.751191065726824*^9}, {3.7511911166076336`*^9, 3.751191224581241*^9}, {
+   3.751191259463172*^9, 3.7511912719967394`*^9}, {3.751191323901327*^9, 
+   3.7511915218061724`*^9}, {3.7511916090608807`*^9, 
+   3.7511916340052414`*^9}, {3.751192976117382*^9, 3.751193033605338*^9}, {
+   3.75119344523499*^9, 3.751193479885804*^9}, {3.7511935274538126`*^9, 
+   3.751193555351034*^9}, {3.7511936648869896`*^9, 3.7511936721022744`*^9}, {
+   3.751193782855769*^9, 3.7511939085016255`*^9}, {3.7511939468156877`*^9, 
+   3.751193947294774*^9}},ExpressionUUID->"0c717f5e-14ad-4410-a543-\
+526931114009"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`isDeployed$$ = 
+    True, $CellContext`showProj$$ = True, $CellContext`t$$ = 
+    51, $CellContext`\[Epsilon]$$ = 0.41015237421866746`, Typeset`show$$ = 
+    True, Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
+    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
+    "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`\[Epsilon]$$], 0.41015237421866746`}, 0, 90 Degree, 
+      0.0017453292519943296`}, {{
+       Hold[$CellContext`isDeployed$$], True, "Locked"}, {True, False}}, {{
+       Hold[$CellContext`showProj$$], False, "Show Projection on CE"}, {
+      True, False}}, {
+      Hold[$CellContext`t$$], 0, 365, 1}, {
+      Hold[
+       Grid[{{
+          Spacer[10], 
+          Manipulate`Place[1], 
+          Spacer[50], 
+          Manipulate`Place[2], 
+          Spacer[25], 
+          Manipulate`Place[3]}, {SpanFromAbove, 
+          Manipulate`Place[4]}}, Alignment -> Left]], 
+      Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
+    720., {177., 183.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Epsilon]$231141$$ = 
+    0, $CellContext`isDeployed$231142$$ = 
+    False, $CellContext`showProj$231143$$ = False, $CellContext`t$231144$$ = 
+    0}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     2, StandardForm, 
+      "Variables" :> {$CellContext`isDeployed$$ = 
+        True, $CellContext`showProj$$ = False, $CellContext`t$$ = 
+        0, $CellContext`\[Epsilon]$$ = 0.41015237421866746`}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`\[Epsilon]$$, $CellContext`\[Epsilon]$231141$$, 0], 
+        Hold[$CellContext`isDeployed$$, $CellContext`isDeployed$231142$$, 
+         False], 
+        Hold[$CellContext`showProj$$, $CellContext`showProj$231143$$, False], 
+        Hold[$CellContext`t$$, $CellContext`t$231144$$, 0]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Row[{
+         (If[$CellContext`isDeployed$$, 
+          Deploy[#], #]& )[
+          Show[
+           $CellContext`celestialSphere[$CellContext`t$$, $CellContext`\
+\[Epsilon]$$, {0, -5, 1}], 
+           Graphics3D[{Yellow, 
+             Opacity[
+              If[$CellContext`showProj$$, 1, 0]], 
+             Sphere[
+              $CellContext`projPos[$CellContext`t$$, \
+$CellContext`\[Epsilon]$$], $CellContext`r]}]]], 
+         Deploy[
+          Show[
+           $CellContext`celestialSphere[$CellContext`t$$, $CellContext`\
+\[Epsilon]$$, 
+            $CellContext`meanPos[$CellContext`t$$]], 
+           Graphics3D[{Yellow, 
+             Opacity[
+              If[$CellContext`showProj$$, 1, 0]], 
+             Sphere[
+              $CellContext`projPos[$CellContext`t$$, \
+$CellContext`\[Epsilon]$$], $CellContext`r]}]]]}], 
+      "Specifications" :> {{{$CellContext`\[Epsilon]$$, 0.41015237421866746`},
+          0, 90 Degree, 0.0017453292519943296`, ControlPlacement -> 
+         1}, {{$CellContext`isDeployed$$, True, "Locked"}, {True, False}, 
+         ControlPlacement -> 
+         2}, {{$CellContext`showProj$$, False, "Show Projection on CE"}, {
+         True, False}, ControlPlacement -> 3}, {$CellContext`t$$, 0, 365, 1, 
+         Appearance -> "Open", ControlPlacement -> 4}, 
+        Grid[{{
+           Spacer[10], 
+           Manipulate`Place[1], 
+           Spacer[50], 
+           Manipulate`Place[2], 
+           Spacer[25], 
+           Manipulate`Place[3]}, {SpanFromAbove, 
+           Manipulate`Place[4]}}, Alignment -> Left]}, "Options" :> {}, 
+      "DefaultOptions" :> {}],
+     ImageSizeCache->{771., {251., 257.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{{3.7511939351937847`*^9, 
+  3.7511939505670238`*^9}},ExpressionUUID->"d619fbff-a3f8-4b83-83b1-\
+70f950092898"]
+}, Open  ]]
 },
 WindowSize->{1280, 677},
 WindowMargins->{{-8, Automatic}, {Automatic, -8}},
@@ -283,7 +527,10 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
-Cell[558, 20, 11539, 247, 646, "Input",ExpressionUUID->"0c717f5e-14ad-4410-a543-526931114009"]
+Cell[CellGroupData[{
+Cell[580, 22, 17625, 389, 989, "Input",ExpressionUUID->"0c717f5e-14ad-4410-a543-526931114009"],
+Cell[18208, 413, 4365, 97, 527, "Output",ExpressionUUID->"d619fbff-a3f8-4b83-83b1-70f950092898"]
+}, Open  ]]
 }
 ]
 *)
