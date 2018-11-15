@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     20735,        465]
-NotebookOptionsPosition[     20301,        449]
-NotebookOutlinePosition[     20649,        464]
-CellTagsIndexPosition[     20606,        461]
+NotebookDataLength[     24422,        548]
+NotebookOptionsPosition[     23986,        532]
+NotebookOutlinePosition[     24334,        547]
+CellTagsIndexPosition[     24291,        544]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -78,6 +78,40 @@ Cell[BoxData[{
         RowBox[{"Sin", "[", 
          RowBox[{"\[Omega]", " ", "t"}], "]"}], 
         RowBox[{"Cos", "[", "\[Epsilon]", "]"}]}]}], "]"}]}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"trailPoints", "[", 
+    RowBox[{"t_", ",", "\[Epsilon]_"}], "]"}], ":=", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"meanPos", "[", "t", "]"}], "+", "#"}], ")"}], "&"}], "/@", 
+    RowBox[{
+     RowBox[{"RotationTransform", "[", 
+      RowBox[{
+       RowBox[{"\[Omega]", " ", "t"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "]"}], "[", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Table", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"RotationTransform", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "\[Omega]"}], " ", "x"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"0", ",", "0", ",", "1"}], "}"}]}], "]"}], "[", 
+        RowBox[{
+         RowBox[{"actualPos", "[", 
+          RowBox[{"x", ",", "\[Epsilon]"}], "]"}], "-", 
+         RowBox[{"meanPos", "[", "x", "]"}]}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"x", ",", "1", ",", "365", ",", "1"}], "}"}]}], 
+      "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", "]"}]}]}], 
   "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{
@@ -148,24 +182,25 @@ Cell[BoxData[{
        RowBox[{"1.1", "R"}]}], ",", 
       RowBox[{"AspectRatio", "\[Rule]", 
        RowBox[{"{", 
-        RowBox[{"1", ",", "1"}], "}"}]}], ",", "\[IndentingNewLine]", 
-      RowBox[{"ViewPoint", "\[Rule]", "vp"}], ",", 
+        RowBox[{"1", ",", "1"}], "}"}]}], ",", 
       RowBox[{"ViewAngle", "\[Rule]", 
        RowBox[{"15", "Degree"}]}], ",", "\[IndentingNewLine]", 
       RowBox[{"Lighting", "\[Rule]", "\"\<Neutral\>\""}], ",", 
       RowBox[{"ImageSize", "\[Rule]", "Medium"}], ",", 
-      RowBox[{"SphericalRegion", "\[Rule]", "True"}]}], "]"}]}], ";"}], 
-  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+      RowBox[{"SphericalRegion", "\[Rule]", "True"}], ",", 
+      "\[IndentingNewLine]", 
+      RowBox[{"ViewPoint", "\[Rule]", "vp"}]}], "\[IndentingNewLine]", 
+     "]"}]}], ";"}], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
   RowBox[{
-   RowBox[{"Row", "[", 
-    RowBox[{"{", "\[IndentingNewLine]", 
-     RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"If", "[", 
+      RowBox[{"isDeployed", ",", 
+       RowBox[{"Deploy", "@", "#"}], ",", "#"}], "]"}], "&"}], "@", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", "\[IndentingNewLine]", 
       RowBox[{
-       RowBox[{
-        RowBox[{"If", "[", 
-         RowBox[{"isDeployed", ",", 
-          RowBox[{"Deploy", "@", "#"}], ",", "#"}], "]"}], "&"}], "@", 
        RowBox[{"Show", "[", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{
@@ -182,19 +217,20 @@ Cell[BoxData[{
           RowBox[{
           "projection", " ", "of", " ", "actual", " ", "sun", " ", "onto", 
            " ", "CE"}], " ", "*)"}], "\[IndentingNewLine]", 
-         RowBox[{"Graphics3D", "[", 
-          RowBox[{"{", 
-           RowBox[{"Yellow", ",", 
-            RowBox[{"Opacity", "[", 
-             RowBox[{"If", "[", 
-              RowBox[{"showProj", ",", "1", ",", "0"}], "]"}], "]"}], ",", 
-            RowBox[{"Sphere", "[", 
-             RowBox[{
-              RowBox[{"projPos", "[", 
-               RowBox[{"t", ",", "\[Epsilon]"}], "]"}], ",", "r"}], "]"}]}], 
-           "}"}], "]"}]}], "\[IndentingNewLine]", "]"}]}], ",", 
-      "\[IndentingNewLine]", 
-      RowBox[{"Deploy", "@", 
+         RowBox[{"If", "[", 
+          RowBox[{"showProj", ",", 
+           RowBox[{"Graphics3D", "[", 
+            RowBox[{"{", 
+             RowBox[{"Yellow", ",", 
+              RowBox[{"Opacity", "[", "1", "]"}], ",", 
+              RowBox[{"Sphere", "[", 
+               RowBox[{
+                RowBox[{"projPos", "[", 
+                 RowBox[{"t", ",", "\[Epsilon]"}], "]"}], ",", "r"}], "]"}]}],
+              "}"}], "]"}], ",", 
+           RowBox[{"Graphics3D", "[", 
+            RowBox[{"{", "}"}], "]"}]}], "]"}]}], "\[IndentingNewLine]", 
+        "]"}], ",", "\[IndentingNewLine]", 
        RowBox[{"Show", "[", "\[IndentingNewLine]", 
         RowBox[{"(*", " ", 
          RowBox[{
@@ -209,18 +245,33 @@ Cell[BoxData[{
           RowBox[{
           "projection", " ", "of", " ", "actual", " ", "sun", " ", "onto", 
            " ", "CE"}], " ", "*)"}], "\[IndentingNewLine]", 
-         RowBox[{"Graphics3D", "[", 
-          RowBox[{"{", 
-           RowBox[{"Yellow", ",", 
-            RowBox[{"Opacity", "[", 
-             RowBox[{"If", "[", 
-              RowBox[{"showProj", ",", "1", ",", "0"}], "]"}], "]"}], ",", 
-            RowBox[{"Sphere", "[", 
-             RowBox[{
-              RowBox[{"projPos", "[", 
-               RowBox[{"t", ",", "\[Epsilon]"}], "]"}], ",", "r"}], "]"}]}], 
-           "}"}], "]"}]}], "\[IndentingNewLine]", "]"}]}]}], 
-     "\[IndentingNewLine]", "}"}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{"showProj", ",", 
+           RowBox[{"Graphics3D", "[", 
+            RowBox[{"{", 
+             RowBox[{"Yellow", ",", 
+              RowBox[{"Opacity", "[", "1", "]"}], ",", 
+              RowBox[{"Sphere", "[", 
+               RowBox[{
+                RowBox[{"projPos", "[", 
+                 RowBox[{"t", ",", "\[Epsilon]"}], "]"}], ",", "r"}], "]"}]}],
+              "}"}], "]"}], ",", 
+           RowBox[{"Graphics3D", "[", 
+            RowBox[{"{", "}"}], "]"}]}], "]"}], ",", "\[IndentingNewLine]", 
+         RowBox[{"If", "[", 
+          RowBox[{"showTrail", ",", 
+           RowBox[{"Graphics3D", "[", 
+            RowBox[{"{", 
+             RowBox[{"Blue", ",", 
+              RowBox[{"Opacity", "[", "0.25", "]"}], ",", 
+              RowBox[{"Point", "[", 
+               RowBox[{"trailPoints", "[", 
+                RowBox[{"t", ",", "\[Epsilon]"}], "]"}], "]"}]}], "}"}], 
+            "]"}], ",", 
+           RowBox[{"Graphics3D", "[", 
+            RowBox[{"{", "}"}], "]"}]}], "]"}]}], "\[IndentingNewLine]", 
+        "]"}]}], "\[IndentingNewLine]", "}"}], "]"}]}], ",", 
+   "\[IndentingNewLine]", 
    RowBox[{"Grid", "[", 
     RowBox[{
      RowBox[{"{", "\[IndentingNewLine]", 
@@ -242,7 +293,7 @@ Cell[BoxData[{
           RowBox[{"{", 
            RowBox[{
             RowBox[{"{", 
-             RowBox[{"isDeployed", ",", "True", ",", "\"\<Locked\>\""}], 
+             RowBox[{"showTrail", ",", "False", ",", "\"\<Show Trail\>\""}], 
              "}"}], ",", 
             RowBox[{"{", 
              RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}], ",", 
@@ -255,15 +306,24 @@ Cell[BoxData[{
              "showProj", ",", "False", ",", "\"\<Show Projection on CE\>\""}],
               "}"}], ",", 
             RowBox[{"{", 
-             RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}]}], "}"}], 
-       ",", "\[IndentingNewLine]", 
+             RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}]}], 
+        "\[IndentingNewLine]", "}"}], ",", "\[IndentingNewLine]", 
        RowBox[{"{", 
         RowBox[{"SpanFromAbove", ",", 
          RowBox[{"Control", "[", 
           RowBox[{"{", 
            RowBox[{"t", ",", "0", ",", "365", ",", "1", ",", 
-            RowBox[{"Appearance", "\[Rule]", "\"\<Open\>\""}]}], "}"}], 
-          "]"}]}], "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
+            RowBox[{"Appearance", "\[Rule]", "\"\<Open\>\""}]}], "}"}], "]"}],
+          ",", "SpanFromAbove", ",", "\[IndentingNewLine]", 
+         RowBox[{"Control", "[", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{"isDeployed", ",", "True", ",", "\"\<Locked\>\""}], 
+             "}"}], ",", 
+            RowBox[{"{", 
+             RowBox[{"True", ",", "False"}], "}"}]}], "}"}], "]"}]}], 
+        "\[IndentingNewLine]", "}"}]}], "\[IndentingNewLine]", "}"}], ",", 
      RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}]}], 
   "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.7511104606544614`*^9, 3.751110479286337*^9}, {
@@ -343,25 +403,35 @@ Cell[BoxData[{
    3.75119344523499*^9, 3.751193479885804*^9}, {3.7511935274538126`*^9, 
    3.751193555351034*^9}, {3.7511936648869896`*^9, 3.7511936721022744`*^9}, {
    3.751193782855769*^9, 3.7511939085016255`*^9}, {3.7511939468156877`*^9, 
-   3.751193947294774*^9}, {3.7511940703925586`*^9, 
-   3.7511940835898128`*^9}},ExpressionUUID->"0c717f5e-14ad-4410-a543-\
+   3.751193947294774*^9}, {3.7511940703925586`*^9, 3.7511940835898128`*^9}, {
+   3.751252994147623*^9, 3.751253061598484*^9}, {3.7512530941785393`*^9, 
+   3.751253144362486*^9}, {3.7512531909464107`*^9, 3.7512531952340736`*^9}, {
+   3.7512532400028152`*^9, 3.7512532469251986`*^9}, {3.7512565070581865`*^9, 
+   3.7512565236265373`*^9}, {3.751256605265852*^9, 3.7512566340987864`*^9}, {
+   3.7512566836117578`*^9, 3.751256794565099*^9}, {3.751256844019094*^9, 
+   3.751256860114055*^9}, {3.7512568965561094`*^9, 3.7512569155302424`*^9}, {
+   3.7512569570920563`*^9, 3.751257036651353*^9}, {3.751257067227649*^9, 
+   3.7512571011861396`*^9}, {3.751257254971379*^9, 3.7512572641547484`*^9}, {
+   3.7512575124861803`*^9, 
+   3.7512576054904594`*^9}},ExpressionUUID->"0c717f5e-14ad-4410-a543-\
 526931114009"],
 
 Cell[BoxData[
  TagBox[
   StyleBox[
    DynamicModuleBox[{$CellContext`isDeployed$$ = 
-    True, $CellContext`showProj$$ = True, $CellContext`t$$ = 
-    37, $CellContext`\[Epsilon]$$ = 0.8482300164692442, Typeset`show$$ = True,
-     Typeset`bookmarkList$$ = {}, Typeset`bookmarkMode$$ = "Menu", 
-    Typeset`animator$$, Typeset`animvar$$ = 1, Typeset`name$$ = 
-    "\"untitled\"", Typeset`specs$$ = {{{
+    True, $CellContext`showProj$$ = False, $CellContext`showTrail$$ = 
+    False, $CellContext`t$$ = 199, $CellContext`\[Epsilon]$$ = 
+    0.41015237421866746`, Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
        Hold[$CellContext`\[Epsilon]$$], 0.41015237421866746`}, 0, 90 Degree, 
       0.0017453292519943296`}, {{
-       Hold[$CellContext`isDeployed$$], True, "Locked"}, {True, False}}, {{
+       Hold[$CellContext`showTrail$$], False, "Show Trail"}, {True, False}}, {{
        Hold[$CellContext`showProj$$], False, "Show Projection on CE"}, {
       True, False}}, {
-      Hold[$CellContext`t$$], 0, 365, 1}, {
+      Hold[$CellContext`t$$], 0, 365, 1}, {{
+       Hold[$CellContext`isDeployed$$], True, "Locked"}, {True, False}}, {
       Hold[
        Grid[{{
           Spacer[10], 
@@ -370,58 +440,71 @@ Cell[BoxData[
           Manipulate`Place[2], 
           Spacer[25], 
           Manipulate`Place[3]}, {SpanFromAbove, 
-          Manipulate`Place[4]}}, Alignment -> Left]], 
+          Manipulate`Place[4], SpanFromAbove, 
+          Manipulate`Place[5]}}, Alignment -> Left]], 
       Manipulate`Dump`ThisIsNotAControl}}, Typeset`size$$ = {
     720., {177., 183.}}, Typeset`update$$ = 0, Typeset`initDone$$, 
-    Typeset`skipInitDone$$ = True, $CellContext`\[Epsilon]$235772$$ = 
-    0, $CellContext`isDeployed$235773$$ = 
-    False, $CellContext`showProj$235774$$ = False, $CellContext`t$235775$$ = 
-    0}, 
+    Typeset`skipInitDone$$ = True, $CellContext`\[Epsilon]$263689$$ = 
+    0, $CellContext`showTrail$263690$$ = 
+    False, $CellContext`showProj$263691$$ = False, $CellContext`t$263692$$ = 
+    0, $CellContext`isDeployed$263693$$ = False}, 
     DynamicBox[Manipulate`ManipulateBoxes[
      2, StandardForm, 
       "Variables" :> {$CellContext`isDeployed$$ = 
-        True, $CellContext`showProj$$ = False, $CellContext`t$$ = 
-        0, $CellContext`\[Epsilon]$$ = 0.41015237421866746`}, 
-      "ControllerVariables" :> {
-        Hold[$CellContext`\[Epsilon]$$, $CellContext`\[Epsilon]$235772$$, 0], 
-        Hold[$CellContext`isDeployed$$, $CellContext`isDeployed$235773$$, 
+        True, $CellContext`showProj$$ = False, $CellContext`showTrail$$ = 
+        False, $CellContext`t$$ = 0, $CellContext`\[Epsilon]$$ = 
+        0.41015237421866746`}, "ControllerVariables" :> {
+        Hold[$CellContext`\[Epsilon]$$, $CellContext`\[Epsilon]$263689$$, 0], 
+        Hold[$CellContext`showTrail$$, $CellContext`showTrail$263690$$, 
          False], 
-        Hold[$CellContext`showProj$$, $CellContext`showProj$235774$$, False], 
-        Hold[$CellContext`t$$, $CellContext`t$235775$$, 0]}, 
+        Hold[$CellContext`showProj$$, $CellContext`showProj$263691$$, False], 
+        Hold[$CellContext`t$$, $CellContext`t$263692$$, 0], 
+        Hold[$CellContext`isDeployed$$, $CellContext`isDeployed$263693$$, 
+         False]}, 
       "OtherVariables" :> {
        Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
         Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
         Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
-         Typeset`skipInitDone$$}, "Body" :> Row[{
-         (If[$CellContext`isDeployed$$, 
-          Deploy[#], #]& )[
+         Typeset`skipInitDone$$}, "Body" :> (If[$CellContext`isDeployed$$, 
+        Deploy[#], #]& )[
+        Row[{
           Show[
            $CellContext`celestialSphere[$CellContext`t$$, $CellContext`\
 \[Epsilon]$$, {0, -5, 1}], 
-           Graphics3D[{Yellow, 
-             Opacity[
-              If[$CellContext`showProj$$, 1, 0]], 
-             Sphere[
-              $CellContext`projPos[$CellContext`t$$, \
-$CellContext`\[Epsilon]$$], $CellContext`r]}]]], 
-         Deploy[
+           If[$CellContext`showProj$$, 
+            Graphics3D[{Yellow, 
+              Opacity[1], 
+              Sphere[
+               $CellContext`projPos[$CellContext`t$$, \
+$CellContext`\[Epsilon]$$], $CellContext`r]}], 
+            Graphics3D[{}]]], 
           Show[
            $CellContext`celestialSphere[$CellContext`t$$, $CellContext`\
 \[Epsilon]$$, 
             $CellContext`meanPos[$CellContext`t$$]], 
-           Graphics3D[{Yellow, 
-             Opacity[
-              If[$CellContext`showProj$$, 1, 0]], 
-             Sphere[
-              $CellContext`projPos[$CellContext`t$$, \
-$CellContext`\[Epsilon]$$], $CellContext`r]}]]]}], 
+           If[$CellContext`showProj$$, 
+            Graphics3D[{Yellow, 
+              Opacity[1], 
+              Sphere[
+               $CellContext`projPos[$CellContext`t$$, \
+$CellContext`\[Epsilon]$$], $CellContext`r]}], 
+            Graphics3D[{}]], 
+           If[$CellContext`showTrail$$, 
+            Graphics3D[{Blue, 
+              Opacity[0.25], 
+              Point[
+               $CellContext`trailPoints[$CellContext`t$$, $CellContext`\
+\[Epsilon]$$]]}], 
+            Graphics3D[{}]]]}]], 
       "Specifications" :> {{{$CellContext`\[Epsilon]$$, 0.41015237421866746`},
           0, 90 Degree, 0.0017453292519943296`, ControlPlacement -> 
-         1}, {{$CellContext`isDeployed$$, True, "Locked"}, {True, False}, 
+         1}, {{$CellContext`showTrail$$, False, "Show Trail"}, {True, False}, 
          ControlPlacement -> 
          2}, {{$CellContext`showProj$$, False, "Show Projection on CE"}, {
          True, False}, ControlPlacement -> 3}, {$CellContext`t$$, 0, 365, 1, 
-         Appearance -> "Open", ControlPlacement -> 4}, 
+         Appearance -> "Open", ControlPlacement -> 
+         4}, {{$CellContext`isDeployed$$, True, "Locked"}, {True, False}, 
+         ControlPlacement -> 5}, 
         Grid[{{
            Spacer[10], 
            Manipulate`Place[1], 
@@ -429,7 +512,8 @@ $CellContext`\[Epsilon]$$], $CellContext`r]}]]]}],
            Manipulate`Place[2], 
            Spacer[25], 
            Manipulate`Place[3]}, {SpanFromAbove, 
-           Manipulate`Place[4]}}, Alignment -> Left]}, "Options" :> {}, 
+           Manipulate`Place[4], SpanFromAbove, 
+           Manipulate`Place[5]}}, Alignment -> Left]}, "Options" :> {}, 
       "DefaultOptions" :> {}],
      ImageSizeCache->{771., {251., 257.}},
      SingleEvaluation->True],
@@ -442,9 +526,8 @@ $CellContext`\[Epsilon]$$], $CellContext`r]}]]]}],
    Deployed->True,
    StripOnInput->False],
   Manipulate`InterpretManipulate[1]]], "Output",
- CellChangeTimes->{{3.7511939351937847`*^9, 3.7511939505670238`*^9}, 
-   3.7511940871612787`*^9},ExpressionUUID->"045a7d5e-7c64-447e-97c1-\
-69d029755864"]
+ CellChangeTimes->{
+  3.75125760734894*^9},ExpressionUUID->"d945804d-a116-4316-b04e-344d5cbf6309"]
 }, Open  ]]
 },
 WindowSize->{1280, 677},
@@ -464,8 +547,8 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 15314, 325, 912, "Input",ExpressionUUID->"0c717f5e-14ad-4410-a543-526931114009"],
-Cell[15897, 349, 4388, 97, 527, "Output",ExpressionUUID->"045a7d5e-7c64-447e-97c1-69d029755864"]
+Cell[580, 22, 18287, 394, 1159, "Input",ExpressionUUID->"0c717f5e-14ad-4410-a543-526931114009"],
+Cell[18870, 418, 5100, 111, 527, "Output",ExpressionUUID->"d945804d-a116-4316-b04e-344d5cbf6309"]
 }, Open  ]]
 }
 ]
