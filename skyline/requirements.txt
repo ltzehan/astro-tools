@@ -1,4 +1,4 @@
 argparse~=1.4.0
 beautifulsoup4~=4.7.1
 reportlab~=3.5.12
-Pillow~=5.3.0
+Pillow~=7.1.0
